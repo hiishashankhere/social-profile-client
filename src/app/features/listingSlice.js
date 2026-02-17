@@ -17,10 +17,11 @@ export const getAllPublicListing = createAsyncThunk("listing/getAllPublicListing
 export const getAllUserListing = createAsyncThunk("listing/getAllUserListing", async (token) => {
     try {
         const { data } = await api.get("/api/listing/user", { headers: { Authorization: `Bearer ${token}` } });
+        console.log(data, 'data>>>');
         return data;
     } catch (error) {
         console.log(error);
-        return [];
+        return { listings: [], balance: { earned: 0, withdrawn: 0, available: 0 } };
     }
 });
 
