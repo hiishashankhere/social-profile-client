@@ -136,7 +136,7 @@ const MyListings = () => {
                     { label: 'Earned', value: balance.earned, icon: WalletIcon },
                     { label: 'Withdrawn', value: balance.withdrawn, icon: ArrowDownCircleIcon },
                     { label: 'Available', value: balance.available, icon: CoinsIcon },
-                ].map((item, index) => (
+                ]?.map((item, index) => (
                     <div onClick={() => item.label === 'Available' && setShowWithdrawal(true)} key={index} className='flex flex-1 items-center justify-between p-4 rounded-lg border border-gray-100 cursor-pointer'>
                         <div className='flex items-center gap-3'>
                             <item.icon className='text-gray-500 w-6 h-6' />
