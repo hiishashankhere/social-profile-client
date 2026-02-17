@@ -35,7 +35,11 @@ const App = () => {
 
     useEffect(() => {
         if (isLoaded && user) {
-            dispatch(getAllUserListing({ getToken }));
+            const fetchListings = async () => {
+                const token = await getToken();
+                dispatch(getAllUserListing(token));
+            };
+            fetchListings();
         }
     }, [isLoaded, user]);
 

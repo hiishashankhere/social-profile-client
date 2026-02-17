@@ -19,15 +19,15 @@ const Navbar = () => {
                 <div className='hidden sm:flex items-center gap-4 md:gap-8 max-md:text-sm text-gray-800'>
                     <Link onClick={() => scrollTo(0, 0)} to='/'> Home </Link>
                     <Link onClick={() => scrollTo(0, 0)} to='/marketplace'> Marketplace </Link>
-                    {user ? <Link onClick={() => scrollTo(0, 0)} to='/messages'> Messages </Link> : <Link onClick={openSignIn} to='#'> Messages </Link> }
-                    {user ? <Link onClick={() => scrollTo(0, 0)} to='/my-listings'> My Listings </Link> : <Link onClick={openSignIn} to='#'> My Listings </Link> }
+                    {user ? <Link onClick={() => scrollTo(0, 0)} to='/messages'> Messages </Link> : <Link onClick={() => openSignIn({ afterSignInUrl: '/', afterSignUpUrl: '/' })} to='#'> Messages </Link>}
+                    {user ? <Link onClick={() => scrollTo(0, 0)} to='/my-listings'> My Listings </Link> : <Link onClick={() => openSignIn({ afterSignInUrl: '/', afterSignUpUrl: '/' })} to='#'> My Listings </Link>}
                 </div>
 
                 {!user ? (
                     <div>
-                        <button onClick={openSignIn} className='max-sm:hidden cursor-pointer px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full'>Login</button>
-                        <MenuIcon className='sm:hidden' onClick={()=>setMenuOpen(true)} />
-                        
+                        <button onClick={() => openSignIn({ afterSignInUrl: '/', afterSignUpUrl: '/' })} className='max-sm:hidden cursor-pointer px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full'>Login</button>
+                        <MenuIcon className='sm:hidden' onClick={() => setMenuOpen(true)} />
+
                     </div>
                 ) : (
                     <UserButton>
@@ -47,12 +47,12 @@ const Navbar = () => {
                 )}
             </div>
 
-            <div className={`sm:hidden fixed inset-0 ${menuOpen ? 'w-full' :'w-0'} overflow-hidden bg-white/70 backdrop-blur shadow-xl rounded-lg z-200 text-sm transition-all`}>
+            <div className={`sm:hidden fixed inset-0 ${menuOpen ? 'w-full' : 'w-0'} overflow-hidden bg-white/70 backdrop-blur shadow-xl rounded-lg z-200 text-sm transition-all`}>
                 <div className='flex flex-col items-center justify-center h-full text-xl font-semibold gap-6 p-4'>
                     <Link to='/marketplace' onClick={() => setMenuOpen(false)}> Marketplace </Link>
-                    <button onClick={openSignIn}> Messages </button>
-                    <button onClick={openSignIn}> My Listings </button>
-                    <button onClick={openSignIn} className=' cursor-pointer px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full'>Login</button>
+                    <button onClick={() => openSignIn({ afterSignInUrl: '/', afterSignUpUrl: '/' })}> Messages </button>
+                    <button onClick={() => openSignIn({ afterSignInUrl: '/', afterSignUpUrl: '/' })}> My Listings </button>
+                    <button onClick={() => openSignIn({ afterSignInUrl: '/', afterSignUpUrl: '/' })} className=' cursor-pointer px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full'>Login</button>
                     <XIcon onClick={() => setMenuOpen(false)} className='absolute size-8 right-6 top-6 text-gray-500 hover:text-gray-700 cursor-pointer' />
                 </div>
             </div>

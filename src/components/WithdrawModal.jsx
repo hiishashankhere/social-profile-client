@@ -42,7 +42,7 @@ const WithdrawModal = ({ onClose }) => {
 
             const { data } = await api.post("/api/listing/withdraw", { account, amount: parseInt(amount) }, { headers: { Authorization: `Bearer ${token}` } });
             toast.success(data.message);
-            dispatch(getAllUserListing({ getToken }));
+            dispatch(getAllUserListing(token));
             onClose();
         } catch (error) {
             toast.error(error?.response?.data?.message || error?.message);

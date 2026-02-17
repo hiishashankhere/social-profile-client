@@ -65,7 +65,7 @@ const MyListings = () => {
             toast.loading('Updating listing status...');
             const token = await getToken();
             const { data } = await api.put(`/api/listing/${listingId}/status`, {}, { headers: { Authorization: `Bearer ${token}` } });
-            dispatch(getAllUserListing({ getToken }));
+            dispatch(getAllUserListing(token));
             dispatch(getAllPublicListing());
             toast.dismissAll();
             toast.success(data.message);
@@ -83,7 +83,7 @@ const MyListings = () => {
             toast.loading('Deleting listing...');
             const token = await getToken();
             const { data } = await api.delete(`/api/listing/${listingId}`, { headers: { Authorization: `Bearer ${token}` } });
-            dispatch(getAllUserListing({ getToken }));
+            dispatch(getAllUserListing(token));
             dispatch(getAllPublicListing());
             toast.dismissAll();
             toast.success(data.message);
@@ -98,7 +98,7 @@ const MyListings = () => {
             toast.loading('featuring listing...');
             const token = await getToken();
             const { data } = await api.put(`/api/listing/featured/${listingId}`, {}, { headers: { Authorization: `Bearer ${token}` } });
-            dispatch(getAllUserListing({ getToken }));
+            dispatch(getAllUserListing(token));
             dispatch(getAllPublicListing());
             toast.dismissAll();
             toast.success(data.message);
